@@ -1,22 +1,15 @@
-'use client';
+'use client'; // إضافة هذه السطر
 
-import Loading from '../Loading';
+import Loading from '../components/Loading';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
-import { usePosts } from './fetch/fetch';
+import { usePosts } from '../fetch/fetch';
 import { useTranslations } from 'next-intl';
-import Cookies from 'js-cookie';
-
-interface Post {
-  id: number;
-  title: string;
-  body: string;
-}
 
 const Page = () => {
-  const [posts, setPosts] = useState<Post[]>([]);
+  const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -25,14 +18,10 @@ const Page = () => {
         if (!response.ok) {
           throw new Error('Failed to fetch posts');
         }
-        const data = await response.json() as Post[];
+        const data = await response.json();
         setPosts(data);
-      } catch (err: unknown) {
-        if (err instanceof Error) {
-          setError(err.message);
-        } else {
-          setError('An unknown error occurred');
-        }
+      } catch (err) {
+        setError(err.message);
       } finally {
         setLoading(false);
       }

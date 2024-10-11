@@ -1,0 +1,15 @@
+{
+    "login":{
+        "title":"Login Page",
+        "Email....":"Email",
+        "Password....":"Password",
+        "login_button":"Log In"
+    },
+    "navlinks":{
+        "title":"Proffer",
+        "logout":"Log Out"
+    },
+    "home":{
+        "posts":"Posts"
+    }
+}
